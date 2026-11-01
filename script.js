@@ -50,6 +50,21 @@ const projects = [
       "images/characters/8.SKIE.png"
     ],
     tags: ["Character", "Modeling", "Stylized", "Outfit"]
+  },
+  {
+    id: 6,
+    title: "Monster",
+    category: "modeling",
+    description: "Creature design and 360 turnaround. Includes base model, rig, and final clear render with detail close-ups.",
+    image: "images/monster-face.png",
+    video: "videos/monster-clear-360.mp4",
+    progress: ["videos/monster-base-360.mp4", "videos/monster-rig-360.mp4"],
+    gallery: [
+      "images/monster-face.png",
+      "images/monster-hands.png",
+      "images/monster-spikes.png"
+    ],
+    tags: ["Creature", "Modeling", "Rig", "360"]
   }
 ];
 
@@ -91,7 +106,7 @@ function openModal(project) {
   if (project.gallery) project.gallery.forEach(src => currentMedia.push({ type: 'image', src }));
   if (project.video) currentMedia.push({ type: 'video', src: project.video, label: 'Final' });
   if (project.progress) {
-    const labels = ["Blocking", "Base"];
+    const labels = ["Base", "Rig"];
     project.progress.forEach((src, i) => currentMedia.push({ type: 'video', src, label: labels[i] || `Progress ${i + 1}` }));
   }
   if (!currentMedia.length && project.image) currentMedia.push({ type: 'image', src: project.image });
