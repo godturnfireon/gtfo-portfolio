@@ -52,7 +52,13 @@ function renderProjects(filter = 'all') {
   filtered.forEach(project => {
     const card = document.createElement('div');
     card.className = 'project-card';
-    card.innerHTML = `<img src="${project.image}" alt="${project.title}"><div class="project-info"><div class="project-category">${project.category}</div><h3>${project.title}</h3></div>`;
+    card.innerHTML = `
+      <div class="img-wrap"><img src="${project.image}" alt="${project.title}"></div>
+      <div class="project-info">
+        <div class="project-category">${project.category}</div>
+        <h3>${project.title}</h3>
+      </div>
+    `;
     card.addEventListener('click', () => openModal(project));
     grid.appendChild(card);
   });
