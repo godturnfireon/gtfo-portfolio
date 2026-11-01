@@ -48,16 +48,16 @@ const projects = [
     title: "Character Collection",
     category: "modeling",
     description: "Original character designs and development. Includes full-body models, outfit studies, and scene renders. Focus on stylized proportions, clothing detail, and expressive faces.",
-    image: "images/characters/1.Hugo.png",
+    image: "images/characters/8.SKIE.png",
     gallery: [
+      "images/characters/8.SKIE.png",
+      "images/characters/6.CHASING 02.png",
+      "images/characters/7.ELEVATOR.png",
       "images/characters/1.Hugo.png",
       "images/characters/2.Jack.png",
       "images/characters/3.Niki.png",
       "images/characters/4.Daniel.png",
-      "images/characters/5.Clara.png",
-      "images/characters/6.CHASING 02.png",
-      "images/characters/7.ELEVATOR.png",
-      "images/characters/8.SKIE.png"
+      "images/characters/5.Clara.png"
     ],
     tags: ["Character", "Modeling", "Stylized", "Outfit"]
   },
