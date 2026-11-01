@@ -34,6 +34,16 @@ const projects = [
     tags: ["Animation", "Sword Fight"]
   },
   {
+    id: 3,
+    title: "POWER",
+    category: "animation",
+    description: "Character animation sequence. Final colored version and base flat pass.",
+    image: "images/Jewelry_0001_10011.png",
+    video: "videos/POWER.mp4",
+    progress: ["videos/POWER-BASE.mp4"],
+    tags: ["Animation", "Character"]
+  },
+  {
     id: 5,
     title: "Character Collection",
     category: "modeling",
