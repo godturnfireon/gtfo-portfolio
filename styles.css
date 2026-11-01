@@ -354,34 +354,29 @@ section { padding: 6rem 2.5rem; max-width: 1440px; margin: 0 auto; }
 /* Brands section */
 .brands-intro {
   color: var(--text-muted);
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   max-width: 420px;
 }
 
 .brands-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 3rem;
   align-items: center;
 }
 
 .brand-logo {
-  background: var(--bg-elevated);
-  border: 1px solid var(--line);
-  padding: 2.5rem;
+  background: transparent;
+  border: none;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 220px;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-.brand-logo:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  min-height: auto;
 }
 .brand-logo img {
-  max-width: 100%;
-  max-height: 160px;
+  max-width: 180px;
+  max-height: 90px;
   object-fit: contain;
 }
 
@@ -501,6 +496,7 @@ footer {
   .modal-media { height: 60vh; }
   .card-arrow { opacity: 1; }
   .hero-arrow { font-size: 2.2rem; }
+  .brand-logo img { max-width: 140px; max-height: 70px; }
 }
 
 .project-card {
