@@ -356,13 +356,17 @@ section { padding: 6rem 2.5rem; max-width: 1440px; margin: 0 auto; }
   color: var(--text-muted);
   margin-bottom: 2rem;
   max-width: 420px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .brands-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 4rem;
   align-items: center;
+  justify-content: center;
 }
 
 .brand-logo {
