@@ -74,6 +74,7 @@ const projects = [
       "images/monster-hands.png",
       "images/monster-spikes.png"
     ],
+    mediaOrder: "video-first",
     tags: ["Creature", "Modeling", "Rig", "360"]
   }
 ];
@@ -87,11 +88,20 @@ let currentIndex = 0;
 
 function getCardMedia(project) {
   const media = [];
-  if (project.gallery) project.gallery.forEach(src => media.push({ type: 'image', src }));
-  if (project.video) media.push({ type: 'video', src: project.video, label: 'Final' });
-  if (project.progress) {
-    const labels = ["Base", "Rig"];
-    project.progress.forEach((src, i) => media.push({ type: 'video', src, label: labels[i] || `Progress ${i + 1}` }));
+  if (project.mediaOrder === "video-first") {
+    if (project.video) media.push({ type: 'video', src: project.video, label: 'Clear' });
+    if (project.progress) {
+      const labels = ["Base", "Rig"];
+      project.progress.forEach((src, i) => media.push({ type: 'video', src, label: labels[i] || `Progress ${i + 1}` }));
+    }
+    if (project.gallery) project.gallery.forEach(src => media.push({ type: 'image', src }));
+  } else {
+    if (project.gallery) project.gallery.forEach(src => media.push({ type: 'image', src }));
+    if (project.video) media.push({ type: 'video', src: project.video, label: 'Final' });
+    if (project.progress) {
+      const labels = ["Base", "Rig"];
+      project.progress.forEach((src, i) => media.push({ type: 'video', src, label: labels[i] || `Progress ${i + 1}` }));
+    }
   }
   if (!media.length && project.image) media.push({ type: 'image', src: project.image });
   return media;
