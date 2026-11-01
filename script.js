@@ -120,13 +120,31 @@ function renderProjects(filter = 'all') {
 
     function renderCardMedia() {
       const item = mediaList[idx];
-      const mediaEl = item.type === 'video'
-        ? `<video class="card-video" muted loop playsinline autoplay><source src="${item.src}" type="video/mp4"></video>`
-        : `<img src="${item.src}" alt="${project.title}">`;
+      let mediaEl = '';
+      if (item.type === 'video') {
+        // Use poster image if available, load video only when hovered or first card
+        const poster = project.image || '';
+        mediaEl = `<video class="card-video" muted loop playsinline preload="none" poster="${poster}"><source src="${item.src}" type="video/mp4"></video>`;
+      } else {
+        mediaEl = `<img src="${item.src}" alt="${project.title}" loading="lazy" decoding="async">`;
+      }
       const arrows = hasMulti
         ? `<button class="card-arrow prev" aria-label="Previous">‹</button><button class="card-arrow next" aria-label="Next">›</button><div class="card-counter">${idx + 1}/${mediaList.length}</div>`
         : '';
       card.querySelector('.img-wrap').innerHTML = mediaEl + arrows;
+
+      // Play video only when card is hovered (saves bandwidth)
+      const video = card.querySelector('.card-video');
+      if (video) {
+        card.addEventListener('mouseenter', () => {
+          if (video.readyState === 0) video.load();
+          video.play().catch(() => {});
+        });
+        card.addEventListener('mouseleave', () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+      }
     }
 
     card.innerHTML = `
@@ -173,8 +191,8 @@ function renderMedia() {
   const item = currentMedia[currentIndex];
   const hasNav = currentMedia.length > 1;
   let mediaEl = item.type === 'video'
-    ? `<video class="modal-media" controls autoplay muted loop><source src="${item.src}" type="video/mp4"></video>`
-    : `<img class="modal-media" src="${item.src}" alt="">`;
+    ? `<video class="modal-media" controls autoplay muted loop preload="auto"><source src="${item.src}" type="video/mp4"></video>`
+    : `<img class="modal-media" src="${item.src}" alt="" loading="lazy">`;
   const nav = hasNav ? `<button class="nav-btn prev" onclick="changeMedia(-1)">‹</button><button class="nav-btn next" onclick="changeMedia(1)">›</button><div class="media-counter">${currentIndex + 1} / ${currentMedia.length}${item.label ? ' · ' + item.label : ''}</div>` : '';
   modalContent.innerHTML = `<button class="modal-close" onclick="closeModal()">&times;</button><div class="media-viewer">${mediaEl}${nav}</div>`;
 }
