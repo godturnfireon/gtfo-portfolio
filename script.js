@@ -92,9 +92,14 @@ const projects = [
 
 const brands = [
   {
+    name: "09studios",
+    logo: "images/brands/09studios-logo.png",
+    description: "Currently working at 09studios."
+  },
+  {
     name: "Bratz",
     logo: "images/brands/bratz-logo.png",
-    description: "Animation work for Bratz."
+    description: "Animation work for Bratz with 09studios."
   },
   {
     name: "Doll Haus of Dread",
