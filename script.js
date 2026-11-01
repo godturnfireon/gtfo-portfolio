@@ -44,6 +44,17 @@ const projects = [
     tags: ["Animation", "Character"]
   },
   {
+    id: 4,
+    title: "Character Cycle",
+    category: "animation",
+    description: "Animation cycle featuring Crimson, Kibali, and Robot. Character rig by Pierrick Picaut.",
+    image: "images/Jewelry_0001_10011.png",
+    video: "videos/cycle-all.mp4",
+    progress: ["videos/cycle-crimson.mp4", "videos/cycle-kibali.mp4", "videos/cycle-robot.mp4"],
+    mediaOrder: "video-first",
+    tags: ["Animation", "Cycle", "Character"]
+  },
+  {
     id: 5,
     title: "Character Collection",
     category: "modeling",
@@ -103,9 +114,9 @@ let currentIndex = 0;
 function getCardMedia(project) {
   const media = [];
   if (project.mediaOrder === "video-first") {
-    if (project.video) media.push({ type: 'video', src: project.video, label: 'Clear' });
+    if (project.video) media.push({ type: 'video', src: project.video, label: 'All' });
     if (project.progress) {
-      const labels = ["Base", "Rig"];
+      const labels = ["Crimson", "Kibali", "Robot"];
       project.progress.forEach((src, i) => media.push({ type: 'video', src, label: labels[i] || `Progress ${i + 1}` }));
     }
     if (project.gallery) project.gallery.forEach(src => media.push({ type: 'image', src }));
