@@ -14,9 +14,9 @@ const projects = [
     title: "Samurai Fight",
     category: "animation",
     description: "Sword fight animation inspired by Samurai Champloo.",
-    image: "images/ruander-poster.jpg",
-    video: "videos/RUANDER-small.mp4",
-    progress: ["videos/020001-small.mp4", "videos/030001-small.mp4"],
+    image: "images/characters/1.Hugo.png",
+    video: "videos/RUANDER.mp4",
+    progress: ["videos/020001-0310.mp4", "videos/030001-0310.mp4"],
     tags: ["Animation", "Sword Fight"]
   },
   {
