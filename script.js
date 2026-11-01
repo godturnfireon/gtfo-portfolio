@@ -6,7 +6,21 @@ const projects = [
     category: "modeling",
     description: "Collection of 3D-modeled accessories — rings, necklaces, and bracelets.",
     image: "images/Jewelry_0001_10011.png",
-    gallery: ["images/Jewelry_0001_10011.png", "images/Jewelry_0006_10006.png", "images/Jewelry_0012_Layer-1.png"],
+    gallery: [
+      "images/Jewelry_0000_10012.png",
+      "images/Jewelry_0001_10011.png",
+      "images/Jewelry_0002_10010.png",
+      "images/Jewelry_0003_10009.png",
+      "images/Jewelry_0004_10008.png",
+      "images/Jewelry_0005_10007.png",
+      "images/Jewelry_0006_10006.png",
+      "images/Jewelry_0007_10005.png",
+      "images/Jewelry_0008_10004.png",
+      "images/Jewelry_0009_10003.png",
+      "images/Jewelry_0010_10002.png",
+      "images/Jewelry_0011_10013.png",
+      "images/Jewelry_0012_Layer-1.png"
+    ],
     tags: ["Jewelry", "Rings", "Necklaces"]
   },
   {
