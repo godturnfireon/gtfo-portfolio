@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <nav>
@@ -63,8 +63,12 @@
       <button class="filter-btn" data-filter="modeling">Modeling</button>
       <button class="filter-btn" data-filter="coloring">Coloring</button>
     </div>
-    <div class="projects-grid" id="projects-grid">
-      <!-- Projects are rendered by script.js -->
+    <div class="slider-wrap">
+      <button class="slider-arrow prev" id="slider-prev" aria-label="Previous">‹</button>
+      <div class="projects-grid" id="projects-grid">
+        <!-- Projects are rendered by script.js -->
+      </div>
+      <button class="slider-arrow next" id="slider-next" aria-label="Next">›</button>
     </div>
   </section>
 
@@ -87,6 +91,6 @@
     <div class="modal-content" id="modal-content"></div>
   </div>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

@@ -162,3 +162,15 @@ if (slides.length) setInterval(() => {
   slideIndex = (slideIndex + 1) % slides.length;
   slides[slideIndex].classList.add('active');
 }, 4000);
+
+// Slider arrows
+const sliderPrev = document.getElementById('slider-prev');
+const sliderNext = document.getElementById('slider-next');
+const scrollAmount = 360;
+
+sliderPrev.addEventListener('click', () => {
+  grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+});
+sliderNext.addEventListener('click', () => {
+  grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+});
