@@ -122,9 +122,7 @@ function renderProjects(filter = 'all') {
       const item = mediaList[idx];
       let mediaEl = '';
       if (item.type === 'video') {
-        // Use poster image if available, load video only when hovered or first card
-        const poster = project.image || '';
-        mediaEl = `<video class="card-video" muted loop playsinline preload="none" poster="${poster}"><source src="${item.src}" type="video/mp4"></video>`;
+        mediaEl = `<video class="card-video" muted loop playsinline autoplay preload="metadata"><source src="${item.src}" type="video/mp4"></video>`;
       } else {
         mediaEl = `<img src="${item.src}" alt="${project.title}" loading="lazy" decoding="async">`;
       }
@@ -132,19 +130,6 @@ function renderProjects(filter = 'all') {
         ? `<button class="card-arrow prev" aria-label="Previous">‹</button><button class="card-arrow next" aria-label="Next">›</button><div class="card-counter">${idx + 1}/${mediaList.length}</div>`
         : '';
       card.querySelector('.img-wrap').innerHTML = mediaEl + arrows;
-
-      // Play video only when card is hovered (saves bandwidth)
-      const video = card.querySelector('.card-video');
-      if (video) {
-        card.addEventListener('mouseenter', () => {
-          if (video.readyState === 0) video.load();
-          video.play().catch(() => {});
-        });
-        card.addEventListener('mouseleave', () => {
-          video.pause();
-          video.currentTime = 0;
-        });
-      }
     }
 
     card.innerHTML = `
@@ -213,11 +198,62 @@ modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 renderProjects();
 
-// Hero Slideshow
-const slides = document.querySelectorAll('.slide');
+// Hero Slideshow — random shuffle on every refresh
+const heroPool = [
+  "images/characters/8.SKIE.png",
+  "images/characters/6.CHASING 02.png",
+  "images/characters/7.ELEVATOR.png",
+  "images/characters/1.Hugo.png",
+  "images/characters/2.Jack.png",
+  "images/characters/3.Niki.png",
+  "images/characters/4.Daniel.png",
+  "images/characters/5.Clara.png",
+  "images/Jewelry_0001_10011.png",
+  "images/Jewelry_0006_10006.png",
+  "images/Jewelry_0008_10004.png",
+  "images/Jewelry_0012_Layer-1.png",
+  "images/monster-face.png"
+];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const slideshow = document.getElementById('slideshow');
 const dotsContainer = document.getElementById('hero-dots');
+let slides = [];
 let slideIndex = 0;
 let slideInterval;
+
+function buildHero() {
+  const picked = shuffle(heroPool).slice(0, 5);
+  slideshow.innerHTML = '';
+  picked.forEach((src, i) => {
+    const div = document.createElement('div');
+    div.className = 'slide' + (i === 0 ? ' active' : '');
+    div.style.backgroundImage = `url('${src}')`;
+    slideshow.appendChild(div);
+  });
+  slides = document.querySelectorAll('.slide');
+
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        showSlide(i);
+        resetInterval();
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+}
 
 function showSlide(i) {
   slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
@@ -234,30 +270,20 @@ function prevSlide() {
   showSlide((slideIndex - 1 + slides.length) % slides.length);
 }
 
-if (slides.length) {
-  // Build dots
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => {
-      showSlide(i);
-      resetInterval();
-    });
-    dotsContainer.appendChild(dot);
-  });
-
-  document.getElementById('hero-next').addEventListener('click', () => {
-    nextSlide();
-    resetInterval();
-  });
-  document.getElementById('hero-prev').addEventListener('click', () => {
-    prevSlide();
-    resetInterval();
-  });
-
-  function resetInterval() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 4500);
-  }
+function resetInterval() {
+  clearInterval(slideInterval);
   slideInterval = setInterval(nextSlide, 4500);
 }
+
+buildHero();
+
+document.getElementById('hero-next').addEventListener('click', () => {
+  nextSlide();
+  resetInterval();
+});
+document.getElementById('hero-prev').addEventListener('click', () => {
+  prevSlide();
+  resetInterval();
+});
+
+slideInterval = setInterval(nextSlide, 4500);
