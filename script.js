@@ -14,7 +14,7 @@ const projects = [
     title: "Samurai Fight",
     category: "animation",
     description: "Sword fight animation inspired by Samurai Champloo.",
-    image: "images/characters/1.Hugo.png",
+    image: "images/Jewelry_0001_10011.png",
     video: "videos/RUANDER.mp4",
     progress: ["videos/020001-0310.mp4", "videos/030001-0310.mp4"],
     tags: ["Animation", "Sword Fight"]
@@ -52,8 +52,16 @@ function renderProjects(filter = 'all') {
   filtered.forEach(project => {
     const card = document.createElement('div');
     card.className = 'project-card';
+
+    let media = '';
+    if (project.video) {
+      media = `<video class="card-video" muted loop playsinline autoplay><source src="${project.video}" type="video/mp4"></video>`;
+    } else {
+      media = `<img src="${project.image}" alt="${project.title}">`;
+    }
+
     card.innerHTML = `
-      <div class="img-wrap"><img src="${project.image}" alt="${project.title}"></div>
+      <div class="img-wrap">${media}</div>
       <div class="project-info">
         <div class="project-category">${project.category}</div>
         <h3>${project.title}</h3>
