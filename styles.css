@@ -1,0 +1,36 @@
+/* GTFO Portfolio - Industrial Gallery
+   Concrete, steel, museum-like
+*/
+
+:root {
+  --bg: #eceae6;
+  --bg-elevated: #f4f3f0;
+  --text: #1c1c1c;
+  --text-muted: #5a5a5a;
+  --accent: #2a2a2a;
+  --metal: #7a756e;
+  --metal-bright: #a8a39a;
+  --border: #d4d0c8;
+  --line: #b8b3ab;
+  --pipe: #8e8a82;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.65;
+}
+nav { position: fixed; top: 0; width: 100%; background: rgba(236,234,230,0.94); z-index: 1000; border-bottom: 2px solid var(--pipe); }
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+.project-card { background: var(--bg-elevated); border: 1px solid var(--line); cursor: pointer; }
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; }
+.modal.active { display: flex; align-items: center; justify-content: center; }
+.modal-content { background: var(--bg-elevated); max-width: 900px; width: 90%; max-height: 90vh; overflow: auto; }
+/* Full styles are in the local file; this is a working base */
