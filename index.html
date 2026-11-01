@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTFO — God Turn Fire On</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">GTFO</a>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>GTFO</h1>
+      <h2>GOD TURN FIRE ON</h2>
+      <p>Animator • Modeler • Colorist</p>
+      <a href="#work" class="btn">View Work</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">02 — About</h2>
+    <div class="about">
+      <div class="about-text">
+        <h3>Turning Ideas Into Motion</h3>
+        <p>I'm an animator and 3D artist who lives for the moment a still model starts to breathe. My main focus is character and action animation — weight, timing, and emotion — while also building the models and pushing the colors that make those performances stronger.</p>
+        <p>Whether it's a fiery warrior mid-leap or a carefully lit environment, I care about the details that sell the illusion of life.</p>
+        <div class="skills">
+          <span class="skill">Character Animation</span>
+          <span class="skill">3D Modeling</span>
+          <span class="skill">Color & Lighting</span>
+          <span class="skill">VFX / Particles</span>
+          <span class="skill">Storytelling</span>
+        </div>
+      </div>
+      <div class="about-image"></div>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2 class="section-title">03 — Selected Work</h2>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="animation">Animation</button>
+      <button class="filter-btn" data-filter="modeling">Modeling</button>
+      <button class="filter-btn" data-filter="coloring">Coloring</button>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+      <!-- Projects are rendered by script.js -->
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 class="section-title">04 — Contact</h2>
+    <p>Have a project that needs fire? Reach out — I'm always open to collaborations, commissions, or just talking about animation.</p>
+    <a href="mailto:your@email.com" class="btn">Get In Touch</a>
+    <div class="socials">
+      <a href="#" aria-label="Instagram">IG</a>
+      <a href="#" aria-label="ArtStation">AS</a>
+      <a href="#" aria-label="Twitter">X</a>
+      <a href="#" aria-label="YouTube">YT</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 GTFO — God Turn Fire On. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
