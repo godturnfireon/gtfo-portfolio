@@ -85,6 +85,18 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 let currentMedia = [];
 let currentIndex = 0;
 
+function getCardMedia(project) {
+  const media = [];
+  if (project.gallery) project.gallery.forEach(src => media.push({ type: 'image', src }));
+  if (project.video) media.push({ type: 'video', src: project.video, label: 'Final' });
+  if (project.progress) {
+    const labels = ["Base", "Rig"];
+    project.progress.forEach((src, i) => media.push({ type: 'video', src, label: labels[i] || `Progress ${i + 1}` }));
+  }
+  if (!media.length && project.image) media.push({ type: 'image', src: project.image });
+  return media;
+}
+
 function renderProjects(filter = 'all') {
   grid.innerHTML = '';
   const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
@@ -92,34 +104,51 @@ function renderProjects(filter = 'all') {
     const card = document.createElement('div');
     card.className = 'project-card';
 
-    let media = '';
-    if (project.video) {
-      media = `<video class="card-video" muted loop playsinline autoplay><source src="${project.video}" type="video/mp4"></video>`;
-    } else {
-      media = `<img src="${project.image}" alt="${project.title}">`;
+    const mediaList = getCardMedia(project);
+    const hasMulti = mediaList.length > 1;
+    let idx = 0;
+
+    function renderCardMedia() {
+      const item = mediaList[idx];
+      const mediaEl = item.type === 'video'
+        ? `<video class="card-video" muted loop playsinline autoplay><source src="${item.src}" type="video/mp4"></video>`
+        : `<img src="${item.src}" alt="${project.title}">`;
+      const arrows = hasMulti
+        ? `<button class="card-arrow prev" aria-label="Previous">‹</button><button class="card-arrow next" aria-label="Next">›</button><div class="card-counter">${idx + 1}/${mediaList.length}</div>`
+        : '';
+      card.querySelector('.img-wrap').innerHTML = mediaEl + arrows;
     }
 
     card.innerHTML = `
-      <div class="img-wrap">${media}</div>
+      <div class="img-wrap"></div>
       <div class="project-info">
         <div class="project-category">${project.category}</div>
         <h3>${project.title}</h3>
       </div>
     `;
-    card.addEventListener('click', () => openModal(project));
+
+    renderCardMedia();
+
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.card-arrow')) return;
+      openModal(project);
+    });
+
+    card.addEventListener('click', (e) => {
+      const arrow = e.target.closest('.card-arrow');
+      if (!arrow) return;
+      e.stopPropagation();
+      if (arrow.classList.contains('prev')) idx = (idx - 1 + mediaList.length) % mediaList.length;
+      else idx = (idx + 1) % mediaList.length;
+      renderCardMedia();
+    });
+
     grid.appendChild(card);
   });
 }
 
 function openModal(project) {
-  currentMedia = [];
-  if (project.gallery) project.gallery.forEach(src => currentMedia.push({ type: 'image', src }));
-  if (project.video) currentMedia.push({ type: 'video', src: project.video, label: 'Final' });
-  if (project.progress) {
-    const labels = ["Base", "Rig"];
-    project.progress.forEach((src, i) => currentMedia.push({ type: 'video', src, label: labels[i] || `Progress ${i + 1}` }));
-  }
-  if (!currentMedia.length && project.image) currentMedia.push({ type: 'image', src: project.image });
+  currentMedia = getCardMedia(project);
   currentIndex = 0;
   renderMedia();
   const body = document.createElement('div');
@@ -162,15 +191,3 @@ if (slides.length) setInterval(() => {
   slideIndex = (slideIndex + 1) % slides.length;
   slides[slideIndex].classList.add('active');
 }, 4000);
-
-// Slider arrows
-const sliderPrev = document.getElementById('slider-prev');
-const sliderNext = document.getElementById('slider-next');
-const scrollAmount = 360;
-
-sliderPrev.addEventListener('click', () => {
-  grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-});
-sliderNext.addEventListener('click', () => {
-  grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-});
