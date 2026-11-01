@@ -184,10 +184,52 @@ filterBtns.forEach(btn => {
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 renderProjects();
+
+// Hero Slideshow
 const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.getElementById('hero-dots');
 let slideIndex = 0;
-if (slides.length) setInterval(() => {
-  slides[slideIndex].classList.remove('active');
-  slideIndex = (slideIndex + 1) % slides.length;
-  slides[slideIndex].classList.add('active');
-}, 4000);
+let slideInterval;
+
+function showSlide(i) {
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+  if (dotsContainer) {
+    dotsContainer.querySelectorAll('.dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+  slideIndex = i;
+}
+
+function nextSlide() {
+  showSlide((slideIndex + 1) % slides.length);
+}
+function prevSlide() {
+  showSlide((slideIndex - 1 + slides.length) % slides.length);
+}
+
+if (slides.length) {
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => {
+      showSlide(i);
+      resetInterval();
+    });
+    dotsContainer.appendChild(dot);
+  });
+
+  document.getElementById('hero-next').addEventListener('click', () => {
+    nextSlide();
+    resetInterval();
+  });
+  document.getElementById('hero-prev').addEventListener('click', () => {
+    prevSlide();
+    resetInterval();
+  });
+
+  function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 4500);
+  }
+  slideInterval = setInterval(nextSlide, 4500);
+}
