@@ -4,6 +4,7 @@ const projects = [
     id: 1,
     title: "Rocked Jewelry",
     category: "modeling",
+    type: "personal",
     description: "Collection of 3D-modeled accessories — rings, necklaces, and bracelets.",
     image: "images/Jewelry_0001_10011.png",
     gallery: [
@@ -27,6 +28,7 @@ const projects = [
     id: 2,
     title: "Samurai Fight",
     category: "animation",
+    type: "personal",
     description: "Sword fight animation inspired by Samurai Champloo.",
     image: "images/Jewelry_0001_10011.png",
     video: "videos/RUANDER.mp4",
@@ -37,6 +39,7 @@ const projects = [
     id: 3,
     title: "POWER",
     category: "animation",
+    type: "personal",
     description: "Character animation sequence. Final colored version and base flat pass.",
     image: "images/Jewelry_0001_10011.png",
     video: "videos/POWER.mp4",
@@ -47,6 +50,7 @@ const projects = [
     id: 5,
     title: "Character Collection",
     category: "modeling",
+    type: "personal",
     description: "Original character designs and development. Includes full-body models, outfit studies, and scene renders. Focus on stylized proportions, clothing detail, and expressive faces.",
     image: "images/characters/8.SKIE.png",
     gallery: [
@@ -65,6 +69,7 @@ const projects = [
     id: 6,
     title: "Monster",
     category: "modeling",
+    type: "personal",
     description: "Creature design and 360 turnaround. Includes base model, rig, and final clear render with detail close-ups.",
     image: "images/monster-face.png",
     video: "videos/monster-clear-360.mp4",
@@ -76,6 +81,16 @@ const projects = [
     ],
     mediaOrder: "video-first",
     tags: ["Creature", "Modeling", "Rig", "360"]
+  },
+  {
+    id: 7,
+    title: "Bratz",
+    category: "animation",
+    type: "brand",
+    description: "Animation work for the Bratz brand.",
+    image: "images/Jewelry_0001_10011.png",
+    video: "videos/bratz.mp4",
+    tags: ["Brand", "Bratz", "Animation"]
   }
 ];
 
@@ -109,7 +124,11 @@ function getCardMedia(project) {
 
 function renderProjects(filter = 'all') {
   grid.innerHTML = '';
-  const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+  const filtered = filter === 'all'
+    ? projects
+    : filter === 'personal' || filter === 'brand'
+      ? projects.filter(p => p.type === filter)
+      : projects.filter(p => p.category === filter);
   filtered.forEach(project => {
     const card = document.createElement('div');
     card.className = 'project-card';
@@ -135,7 +154,7 @@ function renderProjects(filter = 'all') {
     card.innerHTML = `
       <div class="img-wrap"></div>
       <div class="project-info">
-        <div class="project-category">${project.category}</div>
+        <div class="project-category">${project.type === 'brand' ? 'Brand' : project.category}</div>
         <h3>${project.title}</h3>
       </div>
     `;
@@ -166,7 +185,7 @@ function openModal(project) {
   renderMedia();
   const body = document.createElement('div');
   body.className = 'modal-body';
-  body.innerHTML = `<h2>${project.title}</h2><div class="category">${project.category.toUpperCase()}</div><p>${project.description}</p>`;
+  body.innerHTML = `<h2>${project.title}</h2><div class="category">${(project.type === 'brand' ? 'Brand' : project.category).toUpperCase()}</div><p>${project.description}</p>`;
   modalContent.appendChild(body);
   modal.classList.add('active');
 }
