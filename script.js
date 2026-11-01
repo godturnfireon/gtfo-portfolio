@@ -94,6 +94,7 @@ const brands = [
   {
     name: "09studios",
     logo: "images/brands/09studios-logo.png",
+    featured: true,
     description: "Currently working at 09studios."
   },
   {
@@ -195,7 +196,7 @@ function renderBrands() {
   brandsGrid.innerHTML = '';
   brands.forEach(brand => {
     const div = document.createElement('div');
-    div.className = 'brand-logo';
+    div.className = 'brand-logo' + (brand.featured ? ' featured' : '');
     div.innerHTML = `<img src="${brand.logo}" alt="${brand.name}" loading="lazy">`;
     brandsGrid.appendChild(div);
   });
