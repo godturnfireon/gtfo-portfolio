@@ -199,20 +199,27 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 renderProjects();
 
 // Hero Slideshow — random shuffle on every refresh
+// Only non-T-pose images. No videos.
 const heroPool = [
   "images/characters/8.SKIE.png",
   "images/characters/6.CHASING 02.png",
   "images/characters/7.ELEVATOR.png",
-  "images/characters/1.Hugo.png",
-  "images/characters/2.Jack.png",
-  "images/characters/3.Niki.png",
-  "images/characters/4.Daniel.png",
-  "images/characters/5.Clara.png",
+  "images/Jewelry_0000_10012.png",
   "images/Jewelry_0001_10011.png",
+  "images/Jewelry_0002_10010.png",
+  "images/Jewelry_0003_10009.png",
+  "images/Jewelry_0004_10008.png",
+  "images/Jewelry_0005_10007.png",
   "images/Jewelry_0006_10006.png",
+  "images/Jewelry_0007_10005.png",
   "images/Jewelry_0008_10004.png",
+  "images/Jewelry_0009_10003.png",
+  "images/Jewelry_0010_10002.png",
+  "images/Jewelry_0011_10013.png",
   "images/Jewelry_0012_Layer-1.png",
-  "images/monster-face.png"
+  "images/monster-face.png",
+  "images/monster-hands.png",
+  "images/monster-spikes.png"
 ];
 
 function shuffle(arr) {
