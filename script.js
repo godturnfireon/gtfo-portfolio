@@ -6,18 +6,36 @@ const projects = [
     category: "modeling",
     description: "Collection of 3D-modeled accessories — rings, necklaces, and bracelets.",
     image: "images/Jewelry_0001_10011.png",
-    gallery: ["images/Jewelry_0001_10011.png", "images/Jewelry_0002_10010.png", "images/Jewelry_0006_10006.png", "images/Jewelry_0012_Layer-1.png"],
+    gallery: ["images/Jewelry_0001_10011.png", "images/Jewelry_0006_10006.png", "images/Jewelry_0012_Layer-1.png"],
     tags: ["Jewelry", "Rings", "Necklaces"]
   },
   {
     id: 2,
     title: "Samurai Fight",
     category: "animation",
-    description: "Sword fight animation inspired by Samurai Champloo. Focus on timing, weight, and anime-style action.",
+    description: "Sword fight animation inspired by Samurai Champloo.",
     image: "images/ruander-poster.jpg",
     video: "videos/RUANDER-small.mp4",
     progress: ["videos/020001-small.mp4", "videos/030001-small.mp4"],
-    tags: ["Animation", "Sword Fight", "Samurai Champloo"]
+    tags: ["Animation", "Sword Fight"]
+  },
+  {
+    id: 5,
+    title: "Character Collection",
+    category: "modeling",
+    description: "Original character designs and development. Includes full-body models, outfit studies, and scene renders. Focus on stylized proportions, clothing detail, and expressive faces.",
+    image: "images/characters/1.Hugo.png",
+    gallery: [
+      "images/characters/1.Hugo.png",
+      "images/characters/2.Jack.png",
+      "images/characters/3.Niki.png",
+      "images/characters/4.Daniel.png",
+      "images/characters/5.Clara.png",
+      "images/characters/6.CHASING 02.png",
+      "images/characters/7.ELEVATOR.png",
+      "images/characters/8.SKIE.png"
+    ],
+    tags: ["Character", "Modeling", "Stylized", "Outfit"]
   }
 ];
 
