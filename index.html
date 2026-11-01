@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
   <nav>
@@ -15,6 +15,7 @@
       <a href="#" class="logo">GTFO</a>
       <ul>
         <li><a href="#work">Work</a></li>
+        <li><a href="#brands">Brands</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -59,8 +60,6 @@
     <h2 class="section-title">03 — Selected Work</h2>
     <div class="filters">
       <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="personal">Personal</button>
-      <button class="filter-btn" data-filter="brand">Brand</button>
       <button class="filter-btn" data-filter="animation">Animation</button>
       <button class="filter-btn" data-filter="modeling">Modeling</button>
     </div>
@@ -69,8 +68,16 @@
     </div>
   </section>
 
+  <section id="brands">
+    <h2 class="section-title">04 — Brands</h2>
+    <p class="brands-intro">Animation work for brands.</p>
+    <div class="brands-grid" id="brands-grid">
+      <!-- filled by script.js -->
+    </div>
+  </section>
+
   <section id="contact" class="contact">
-    <h2 class="section-title">04 — Contact</h2>
+    <h2 class="section-title">05 — Contact</h2>
     <p>Have a project that needs fire? Reach out — I'm always open to collaborations, commissions, or just talking about animation.</p>
     <a href="mailto:godturnfireon@gmail.com" class="btn">Get In Touch</a>
     <div class="socials">
@@ -88,6 +95,6 @@
     <div class="modal-content" id="modal-content"></div>
   </div>
 
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>

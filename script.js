@@ -4,7 +4,6 @@ const projects = [
     id: 1,
     title: "Rocked Jewelry",
     category: "modeling",
-    type: "personal",
     description: "Collection of 3D-modeled accessories — rings, necklaces, and bracelets.",
     image: "images/Jewelry_0001_10011.png",
     gallery: [
@@ -28,7 +27,6 @@ const projects = [
     id: 2,
     title: "Samurai Fight",
     category: "animation",
-    type: "personal",
     description: "Sword fight animation inspired by Samurai Champloo.",
     image: "images/Jewelry_0001_10011.png",
     video: "videos/RUANDER.mp4",
@@ -39,7 +37,6 @@ const projects = [
     id: 3,
     title: "POWER",
     category: "animation",
-    type: "personal",
     description: "Character animation sequence. Final colored version and base flat pass.",
     image: "images/Jewelry_0001_10011.png",
     video: "videos/POWER.mp4",
@@ -50,7 +47,6 @@ const projects = [
     id: 5,
     title: "Character Collection",
     category: "modeling",
-    type: "personal",
     description: "Original character designs and development. Includes full-body models, outfit studies, and scene renders. Focus on stylized proportions, clothing detail, and expressive faces.",
     image: "images/characters/8.SKIE.png",
     gallery: [
@@ -69,7 +65,6 @@ const projects = [
     id: 6,
     title: "Monster",
     category: "modeling",
-    type: "personal",
     description: "Creature design and 360 turnaround. Includes base model, rig, and final clear render with detail close-ups.",
     image: "images/monster-face.png",
     video: "videos/monster-clear-360.mp4",
@@ -81,20 +76,24 @@ const projects = [
     ],
     mediaOrder: "video-first",
     tags: ["Creature", "Modeling", "Rig", "360"]
+  }
+];
+
+const brands = [
+  {
+    name: "Bratz",
+    logo: "images/brands/bratz-logo.png",
+    description: "Animation work for Bratz."
   },
   {
-    id: 7,
-    title: "Bratz",
-    category: "animation",
-    type: "brand",
-    description: "Animation work for the Bratz brand.",
-    image: "images/Jewelry_0001_10011.png",
-    video: "videos/bratz.mp4",
-    tags: ["Brand", "Bratz", "Animation"]
+    name: "Doll Haus of Dread",
+    logo: "images/brands/dollhaus-logo.png",
+    description: "Animation work for Jakks Pacific — Doll Haus of Dread."
   }
 ];
 
 const grid = document.getElementById('projects-grid');
+const brandsGrid = document.getElementById('brands-grid');
 const modal = document.getElementById('modal');
 const modalContent = document.getElementById('modal-content');
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -124,11 +123,7 @@ function getCardMedia(project) {
 
 function renderProjects(filter = 'all') {
   grid.innerHTML = '';
-  const filtered = filter === 'all'
-    ? projects
-    : filter === 'personal' || filter === 'brand'
-      ? projects.filter(p => p.type === filter)
-      : projects.filter(p => p.category === filter);
+  const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
   filtered.forEach(project => {
     const card = document.createElement('div');
     card.className = 'project-card';
@@ -154,7 +149,7 @@ function renderProjects(filter = 'all') {
     card.innerHTML = `
       <div class="img-wrap"></div>
       <div class="project-info">
-        <div class="project-category">${project.type === 'brand' ? 'Brand' : project.category}</div>
+        <div class="project-category">${project.category}</div>
         <h3>${project.title}</h3>
       </div>
     `;
@@ -179,13 +174,24 @@ function renderProjects(filter = 'all') {
   });
 }
 
+function renderBrands() {
+  if (!brandsGrid) return;
+  brandsGrid.innerHTML = '';
+  brands.forEach(brand => {
+    const div = document.createElement('div');
+    div.className = 'brand-logo';
+    div.innerHTML = `<img src="${brand.logo}" alt="${brand.name}" loading="lazy">`;
+    brandsGrid.appendChild(div);
+  });
+}
+
 function openModal(project) {
   currentMedia = getCardMedia(project);
   currentIndex = 0;
   renderMedia();
   const body = document.createElement('div');
   body.className = 'modal-body';
-  body.innerHTML = `<h2>${project.title}</h2><div class="category">${(project.type === 'brand' ? 'Brand' : project.category).toUpperCase()}</div><p>${project.description}</p>`;
+  body.innerHTML = `<h2>${project.title}</h2><div class="category">${project.category.toUpperCase()}</div><p>${project.description}</p>`;
   modalContent.appendChild(body);
   modal.classList.add('active');
 }
@@ -216,6 +222,7 @@ filterBtns.forEach(btn => {
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 renderProjects();
+renderBrands();
 
 // Hero Slideshow — random shuffle on every refresh
 // Only non-T-pose images. No videos.

@@ -351,6 +351,40 @@ section { padding: 6rem 2.5rem; max-width: 1440px; margin: 0 auto; }
 }
 .project-info h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 500; }
 
+/* Brands section */
+.brands-intro {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  max-width: 420px;
+}
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  align-items: center;
+}
+
+.brand-logo {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.brand-logo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.brand-logo img {
+  max-width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+}
+
 .modal {
   display: none;
   position: fixed;
